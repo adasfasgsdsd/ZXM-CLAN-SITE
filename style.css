@@ -18,6 +18,32 @@ body {
     padding: 20px;
 }
 
+/* Счётчик онлайн */
+.online-counter {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    background: rgba(255, 62, 120, 0.8);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.online-counter i {
+    font-size: 16px;
+}
+
+#onlineCount {
+    color: #00ff00;
+    font-weight: bold;
+}
+
 /* Header Styles */
 header {
     background: rgba(0, 0, 0, 0.7);
@@ -290,25 +316,26 @@ nav {
 
 .member p {
     color: #ccc;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-/* Кнопка под профилем */
+/* Маленькие кнопки под профилем */
 .member-link {
     display: inline-block;
     background: linear-gradient(45deg, #ff3e78, #ff7c00);
     color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 6px 12px;
+    border-radius: 15px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 12px;
     transition: all 0.3s ease;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .member-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 62, 120, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 62, 120, 0.3);
     background: linear-gradient(45deg, #ff7c00, #ff3e78);
 }
 
@@ -407,6 +434,7 @@ nav {
     background: rgba(255, 62, 120, 0.1);
     border-radius: 5px;
     border-left: 3px solid #ff3e78;
+    font-size: 14px;
 }
 
 .telegram-info {
@@ -422,4 +450,329 @@ nav {
 
 .telegram-info i {
     font-size: 2rem;
-    color: 
+    color: #0088cc;
+    margin-bottom: 10px;
+}
+
+.telegram-info p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.telegram-info strong {
+    color: #ff3e78;
+}
+
+.join-form {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 4px solid #ff7c00;
+}
+
+.join-form h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ff7c00;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.join-form input, 
+.join-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.join-form input:focus, 
+.join-form textarea:focus {
+    outline: none;
+    border-color: #ff3e78;
+    box-shadow: 0 0 0 2px rgba(255, 62, 120, 0.2);
+}
+
+.join-form input::placeholder,
+.join-form textarea::placeholder {
+    color: #ccc;
+}
+
+.join-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.join-form button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #ff3e78, #ff7c00);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.join-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 62, 120, 0.3);
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.footer-logo h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ff3e78;
+    margin-bottom: 5px;
+    font-size: 2rem;
+}
+
+.footer-logo p {
+    color: #ccc;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.footer-links a:hover {
+    color: #ff3e78;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.footer-social a:hover {
+    background: #ff3e78;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ccc;
+    font-size: 1rem;
+}
+
+/* Исправление для плавной прокрутки */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* Убедимся, что секции имеют правильное позиционирование */
+section {
+    position: relative;
+    scroll-margin-top: 80px;
+}
+
+/* Mobile Navigation */
+@media screen and (max-width: 768px) {
+    .online-counter {
+        top: 70px;
+        right: 10px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .nav-links {
+        position: fixed;
+        right: 0;
+        height: 100vh;
+        top: 0;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 70%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        z-index: 999;
+    }
+    
+    .nav-active {
+        transform: translateX(0%);
+    }
+    
+    .nav-links li {
+        margin: 20px 0;
+        opacity: 0;
+    }
+    
+    .burger {
+        display: block;
+        z-index: 1000;
+    }
+    
+    /* Burger animation */
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .toggle .line2 {
+        opacity: 0;
+    }
+    
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 120px;
+    }
+    
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .join-content {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    section {
+        scroll-margin-top: 60px;
+    }
+}
+
+/* Адаптивность для секции Присоединиться */
+@media screen and (max-width: 968px) {
+    .join-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .join-info,
+    .join-form {
+        width: 100%;
+    }
+    
+    .discord-info,
+    .telegram-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .discord-info i,
+    .telegram-info i {
+        margin-right: 0;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .join {
+        padding: 80px 0;
+    }
+    
+    .join-info {
+        padding: 20px;
+    }
+    
+    .join-form {
+        padding: 20px;
+    }
+    
+    .join-info li {
+        padding-left: 20px;
+    }
+    
+    .footer-content {
+        gap: 25px;
+    }
+    
+    .discord-info,
+    .telegram-info {
+        padding: 12px;
+    }
+    
+    .member-link {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+}
