@@ -64,8 +64,8 @@ joinForm.addEventListener('submit', async (e) => {
         }
         
         // Изменено: возраст от 9 лет вместо 13
-        if (data.age < 9) {
-            alert('⚠️ Возраст должен быть от 9 лет!');
+        if (data.age < 10) {
+            alert('⚠️ Возраст должен быть от 10 лет!');
             return;
         }
         
@@ -175,3 +175,4 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
