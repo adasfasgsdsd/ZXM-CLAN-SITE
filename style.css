@@ -749,3 +749,56 @@ section {
         padding: 12px;
     }
 }
+
+/* Анимация увеличения для всех картинок на сайте */
+.hero-image img,
+.about-image img,
+.member-image img {
+    transition: transform 0.3s ease;
+}
+
+.hero-image img:hover,
+.about-image img:hover,
+.member-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Специфичные стили для разных разделов */
+.hero-image img {
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.about-image img {
+    border-radius: 10px;
+}
+
+.member-image img {
+    border-radius: 50%;
+    border: 3px solid #ff3e78;
+}
+
+/* Сохранение пропорций при увеличении */
+.hero-image,
+.about-image,
+.member-image {
+    overflow: hidden;
+}
+
+.hero-image,
+.about-image {
+    border-radius: 10px;
+}
+
+.member-image {
+    border-radius: 50%;
+}
+
+/* Для мобильных устройств - уменьшаем эффект */
+@media screen and (max-width: 768px) {
+    .hero-image img:hover,
+    .about-image img:hover,
+    .member-image img:hover {
+        transform: scale(1.02);
+    }
+}
