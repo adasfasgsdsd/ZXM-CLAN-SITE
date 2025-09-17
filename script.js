@@ -2,6 +2,20 @@
 const TELEGRAM_BOT_TOKEN = '8421922493:AAG-6zXdALUQnq9JlUKyR8W_EK18ippooPQ';
 const TELEGRAM_CHAT_IDS = ['6719958001', '5947748922', '7214965634'];
 
+// Счётчик онлайн
+let onlineCount = 7; // Начальное значение
+
+function updateOnlineCounter() {
+    // Случайное изменение количества онлайн (от -2 до +3)
+    const randomChange = Math.floor(Math.random() * 6) - 2;
+    onlineCount = Math.max(3, Math.min(15, onlineCount + randomChange));
+    
+    document.getElementById('onlineCount').textContent = onlineCount;
+    
+    // Обновляем каждые 30-60 секунд
+    setTimeout(updateOnlineCounter, 30000 + Math.random() * 30000);
+}
+
 // Mobile Navigation
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');
@@ -175,3 +189,8 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Запуск счётчика онлайн при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    updateOnlineCounter();
+});
