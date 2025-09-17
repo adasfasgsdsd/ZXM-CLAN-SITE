@@ -158,6 +158,11 @@ nav {
     width: 100%;
     border-radius: 10px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
 }
 
 /* About Section */
@@ -217,6 +222,11 @@ nav {
 .about-image img {
     width: 100%;
     border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.05);
 }
 
 /* Members Section */
@@ -244,19 +254,65 @@ nav {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s;
+    position: relative;
 }
 
 .member:hover {
     transform: translateY(-10px);
 }
 
-.member img {
+.member-image {
+    position: relative;
     width: 120px;
     height: 120px;
+    margin: 0 auto 15px;
+    overflow: hidden;
     border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
     border: 3px solid #ff3e78;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.member-image:hover img {
+    transform: scale(1.1);
+}
+
+.member-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.member-image:hover .member-overlay {
+    opacity: 1;
+}
+
+.member-link {
+    color: #fff;
+    background: linear-gradient(45deg, #ff3e78, #ff7c00);
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.member-link:hover {
+    transform: scale(1.1);
 }
 
 .member h3 {
@@ -334,13 +390,15 @@ nav {
     padding: 15px;
     border-radius: 8px;
     border-left: 3px solid #5865F2;
+    margin-bottom: 15px;
+    flex-direction: column;
+    text-align: center;
 }
 
 .discord-info i {
     font-size: 2rem;
     color: #5865F2;
-    margin-right: 15px;
-    flex-shrink: 0;
+    margin-bottom: 10px;
 }
 
 .discord-info p {
@@ -354,6 +412,41 @@ nav {
     font-weight: bold;
     display: block;
     margin-top: 5px;
+}
+
+.discord-help {
+    margin-top: 10px !important;
+    padding: 10px;
+    background: rgba(255, 62, 120, 0.1);
+    border-radius: 5px;
+    border-left: 3px solid #ff3e78;
+}
+
+.telegram-info {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 136, 204, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #0088cc;
+    text-align: center;
+    flex-direction: column;
+}
+
+.telegram-info i {
+    font-size: 2rem;
+    color: #0088cc;
+    margin-bottom: 10px;
+}
+
+.telegram-info p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.telegram-info strong {
+    color: #ff3e78;
 }
 
 .join-form {
@@ -602,13 +695,15 @@ section {
         width: 100%;
     }
     
-    .discord-info {
+    .discord-info,
+    .telegram-info {
         flex-direction: column;
         text-align: center;
         gap: 15px;
     }
     
-    .discord-info i {
+    .discord-info i,
+    .telegram-info i {
         margin-right: 0;
     }
     
@@ -647,5 +742,10 @@ section {
     
     .footer-content {
         gap: 25px;
+    }
+    
+    .discord-info,
+    .telegram-info {
+        padding: 12px;
     }
 }
