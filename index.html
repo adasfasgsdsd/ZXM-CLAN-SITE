@@ -21,7 +21,9 @@
                     <li><a href="#home">Главная</a></li>
                     <li><a href="#about">О нас</a></li>
                     <li><a href="#members">Участники</a></li>
+                    <li><a href="#humiliated">Кого мы унизили</a></li>
                     <li><a href="#join">Присоединиться</a></li>
+                    <li><a href="#admin" class="admin-link">Админ</a></li>
                 </ul>
                 <div class="burger">
                     <div class="line1"></div>
@@ -102,6 +104,17 @@
             </div>
         </section>
 
+        <!-- Новый раздел: Кого мы унизили -->
+        <section id="humiliated" class="humiliated">
+            <h2>КОГО МЫ УНИЗИЛИ</h2>
+            <div class="humiliated-grid" id="humiliatedGrid">
+                <div class="placeholder">
+                    <i class="fas fa-trophy"></i>
+                    <p>Здесь будут появляться наши победы!</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Join Section -->
         <section id="join" class="join">
             <h2>ПРИСОЕДИНИТЬСЯ К ZXM</h2>
@@ -110,13 +123,13 @@
                     <h3>ТРЕБОВАНИЯ ДЛЯ ВСТУПЛЕНИЯ:</h3>
                     <ul>
                         <li>Активность в игре не менее 5 часов в неделю</li>
-                        <li>Возраст от 9 лет</li>  <!-- ИСПРАВЛЕНО: было 13, стало 9 -->
+                        <li>Возраст от 9 лет</li>
                         <li>Готовность участвовать в клановых мероприятиях</li>
                         <li>Уважительное отношение к другим участникам</li>
                     </ul>
                     <div class="discord-info">
                         <i class="fab fa-discord"></i>
-                        <p>Присоединяйтесь к нашему Discord-серверу:<br><span>deadwavert</span></p>
+                        <p>Присоединяйтесь к нашему Discord-серверу:<br><span>ZXM_Clan#1234</span></p>
                         <p class="discord-help">Если вам не отвечают, киньте заявку в друзья: <strong>deadwavert</strong></p>
                     </div>
                     <div class="telegram-info">
@@ -137,6 +150,31 @@
             </div>
         </section>
 
+        <!-- Админ панель -->
+        <section id="admin" class="admin-panel">
+            <h2>АДМИН ПАНЕЛЬ</h2>
+            <div class="admin-content">
+                <div class="admin-form">
+                    <h3>Загрузить новое изображение</h3>
+                    <div class="upload-area" id="adminUploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Перетащите сюда изображение или нажмите для выбора</p>
+                        <input type="file" id="adminImageUpload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="admin-controls">
+                        <button id="clearImages" class="admin-btn danger">Очистить все изображения</button>
+                        <button id="saveAdmin" class="admin-btn">Сохранить изменения</button>
+                    </div>
+                </div>
+                <div class="admin-preview">
+                    <h3>Предпросмотр загруженных изображений</h3>
+                    <div class="preview-grid" id="adminPreviewGrid">
+                        <!-- Сюда будут добавляться превью -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer>
             <div class="footer-content">
@@ -153,6 +191,7 @@
                     <a href="#home">Главная</a>
                     <a href="#about">О нас</a>
                     <a href="#members">Участники</a>
+                    <a href="#humiliated">Кого мы унизили</a>
                     <a href="#join">Присоединиться</a>
                 </div>
                 <div class="footer-social">
@@ -171,4 +210,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
