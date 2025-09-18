@@ -6,7 +6,1081 @@
     <title>ZXM Clan | Boom Hood Roblox</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Счётчик онлайн в футере */
+        .online-counter-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #00ff00;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 15px;
+            border: 1px solid #00ff00;
+        }
+
+        .online-counter-footer i {
+            font-size: 14px;
+        }
+
+        .online-counter-footer span {
+            color: #ccc;
+        }
+
+        #onlineCount {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #ff3e78;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff3e78, #ff7c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff3e78, #ff7c00);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Ссылка админа в навигации */
+        .admin-link {
+            color: #00ff00 !important;
+            font-weight: bold !important;
+            background: rgba(0, 255, 0, 0.1);
+            padding: 8px 15px !important;
+            border-radius: 20px;
+            border: 1px solid #00ff00;
+        }
+
+        .admin-link::after {
+            background: linear-gradient(45deg, #00ff00, #00cc00) !important;
+        }
+
+        .admin-link:hover {
+            background: rgba(0, 255, 0, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ff3e78, #ff7c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff3e78, #ff7c00);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 62, 120, 0.3);
+        }
+
+        .hero-image {
+            flex: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+        }
+
+        .about h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: #ff3e78;
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Members Section */
+        .members {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .members h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .member {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-image {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 3px solid #ff3e78;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .member-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .member h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 5px;
+            color: #ff3e78;
+        }
+
+        .member p {
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        /* Маленькие кнопки под профилем */
+        .member-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff3e78, #ff7c00);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .member-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 62, 120, 0.3);
+            background: linear-gradient(45deg, #ff7c00, #ff3e78);
+        }
+
+        /* Раздел "Кого мы унизили" */
+        .humiliated {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .humiliated h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            color: #ff3e78;
+        }
+
+        .humiliated-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .humiliated-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .humiliated-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .humiliated-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .humiliated-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .placeholder {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 2px dashed #ff3e78;
+        }
+
+        .placeholder i {
+            font-size: 3rem;
+            color: #ff3e78;
+            margin-bottom: 20px;
+        }
+
+        .placeholder p {
+            color: #ccc;
+            font-size: 1.2rem;
+        }
+
+        /* Join Section */
+        .join {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .join h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        .join-content {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        .join-info {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #ff3e78;
+        }
+
+        .join-info h3 {
+            color: #ff3e78;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .join-info ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .join-info li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .join-info li:before {
+            content: "•";
+            color: #ff3e78;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+
+        .discord-info {
+            display: flex;
+            align-items: center;
+            background: rgba(88, 101, 242, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #5865F2;
+            margin-bottom: 15px;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .discord-info i {
+            font-size: 2rem;
+            color: #5865F2;
+            margin-bottom: 10px;
+        }
+
+        .discord-info p {
+            margin: 0;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        .discord-info span {
+            color: #ff3e78;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .discord-help {
+            margin-top: 10px !important;
+            padding: 10px;
+            background: rgba(255, 62, 120, 0.1);
+            border-radius: 5px;
+            border-left: 3px solid #ff3e78;
+            font-size: 14px;
+        }
+
+        .telegram-info {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 136, 204, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #0088cc;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .telegram-info i {
+            font-size: 2rem;
+            color: #0088cc;
+            margin-bottom: 10px;
+        }
+
+        .telegram-info p {
+            margin: 0;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        .telegram-info strong {
+            color: #ff3e78;
+        }
+
+        .join-form {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #ff7c00;
+        }
+
+        .join-form h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ff7c00;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .join-form input, 
+        .join-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .join-form input:focus, 
+        .join-form textarea:focus {
+            outline: none;
+            border-color: #ff3e78;
+            box-shadow: 0 0 0 2px rgba(255, 62, 120, 0.2);
+        }
+
+        .join-form input::placeholder,
+        .join-form textarea::placeholder {
+            color: #ccc;
+        }
+
+        .join-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .join-form button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff3e78, #ff7c00);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .join-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 62, 120, 0.3);
+        }
+
+        /* Админ панель */
+        .admin-panel {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        /* Форма входа в админку */
+        .admin-login {
+            text-align: center;
+            padding: 60px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid #ff3e78;
+            max-width: 400px;
+            margin: 100px auto;
+        }
+
+        .admin-login h2 {
+            color: #ff3e78;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .login-form input {
+            padding: 12px 15px;
+            border: 1px solid #ff3e78;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #ff7c00;
+            box-shadow: 0 0 0 2px rgba(255, 62, 120, 0.3);
+        }
+
+        .login-form input::placeholder {
+            color: #ccc;
+        }
+
+        /* Контент админки */
+        .admin-content {
+            display: none;
+        }
+
+        .admin-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #ff3e78;
+        }
+
+        /* Верхняя панель админки */
+        .admin-controls-top {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .admin-main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .admin-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #00ff00;
+        }
+
+        .admin-form h3 {
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .upload-area {
+            border: 2px dashed #00ff00;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .upload-area:hover {
+            background: rgba(0, 255, 0, 0.1);
+        }
+
+        .upload-area i {
+            font-size: 3rem;
+            color: #00ff00;
+            margin-bottom: 15px;
+        }
+
+        .admin-controls {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        .admin-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .admin-btn.danger {
+            background: linear-gradient(45deg, #ff3e78, #ff0000);
+            color: white;
+        }
+
+        .admin-btn.danger:hover {
+            background: linear-gradient(45deg, #ff0000, #ff3e78);
+            transform: translateY(-2px);
+        }
+
+        .admin-btn {
+            background: linear-gradient(45deg, #00ff00, #00cc00);
+            color: black;
+        }
+
+        .admin-btn:hover {
+            background: linear-gradient(45deg, #00cc00, #00ff00);
+            transform: translateY(-2px);
+        }
+
+        .admin-preview {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #0088cc;
+        }
+
+        .admin-preview h3 {
+            color: #0088cc;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .preview-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .preview-item .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 62, 120, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ff3e78;
+            margin-bottom: 5px;
+            font-size: 2rem;
+        }
+
+        .footer-logo p {
+            color: #ccc;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .footer-links a:hover {
+            color: #ff3e78;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: #ff3e78;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        /* Исправление для плавной прокрутки */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Убедимся, что секции имеют правильное позиционирование */
+        section {
+            position: relative;
+            scroll-margin-top: 80px;
+        }
+
+        /* Mobile Navigation */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                right: 0;
+                height: 100vh;
+                top: 0;
+                background: rgba(0, 0, 0, 0.95);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 70%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                z-index: 999;
+            }
+            
+            .nav-active {
+                transform: translateX(0%);
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+                opacity: 0;
+            }
+            
+            .burger {
+                display: block;
+                z-index: 1000;
+            }
+            
+            /* Burger animation */
+            .toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .toggle .line2 {
+                opacity: 0;
+            }
+            
+            .toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .join-content {
+                flex-direction: column;
+            }
+            
+            .admin-main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .humiliated-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            section {
+                scroll-margin-top: 60px;
+            }
+        }
+
+        /* Адаптивность для секции Присоединиться */
+        @media screen and (max-width: 968px) {
+            .join-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .join-info,
+            .join-form {
+                width: 100%;
+            }
+            
+            .discord-info,
+            .telegram-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .discord-info i,
+            .telegram-info i {
+                margin-right: 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .join {
+                padding: 80px 0;
+            }
+            
+            .join-info {
+                padding: 20px;
+            }
+            
+            .join-form {
+                padding: 20px;
+            }
+            
+            .join-info li {
+                padding-left: 20px;
+            }
+            
+            .footer-content {
+                gap: 25px;
+            }
+            
+            .discord-info,
+            .telegram-info {
+                padding: 12px;
+            }
+            
+            .member-link {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+            
+            .admin-login {
+                margin: 50px 20px;
+                padding: 40px 20px;
+            }
+            
+            .admin-form,
+            .admin-preview {
+                padding: 20px;
+            }
+            
+            .upload-area {
+                padding: 20px;
+            }
+            
+            .preview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -130,97 +1204,4 @@
                     <div class="discord-info">
                         <i class="fab fa-discord"></i>
                         <p>Присоединяйтесь к нашему Discord-серверу:<br><span>ZXM_Clan#1234</span></p>
-                        <p class="discord-help">Если вам не отвечают, киньте заявку в друзья: <strong>deadwavert</strong></p>
-                    </div>
-                    <div class="telegram-info">
-                        <i class="fab fa-telegram"></i>
-                        <p>Если вам не отвечают даже в DS, напишите мне лично в Telegram: <strong>@paradox_smertonos</strong></p>
-                    </div>
-                </div>
-                <div class="join-form">
-                    <h3>ЗАЯВКА НА ВСТУПЛЕНИЕ</h3>
-                    <form id="joinForm">
-                        <input type="text" name="nickname" placeholder="Ваш никнейм в Roblox" required>
-                        <input type="number" name="age" placeholder="Ваш возраст" required>
-                        <input type="text" name="discord" placeholder="Ваш Discord" required>
-                        <textarea name="message" placeholder="Почему вы хотите присоединиться к ZXM?" rows="4" required></textarea>
-                        <button type="submit">ОТПРАВИТЬ ЗАЯВКУ</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-       <!-- Админ панель -->
-<section id="admin" class="admin-panel">
-    <div class="admin-login" id="adminLogin">
-        <h2>ВХОД В АДМИНКУ</h2>
-        <div class="login-form">
-            <input type="password" id="adminPassword" placeholder="Введите пароль" required>
-            <button id="loginBtn" class="admin-btn">Войти</button>
-        </div>
-    </div>
-    
-    <div class="admin-content" id="adminContent" style="display: none;">
-        <h2>АДМИН ПАНЕЛЬ</h2>
-        <div class="admin-controls-top">
-            <button id="logoutBtn" class="admin-btn danger">Выйти</button>
-        </div>
-        <div class="admin-main-content">
-            <div class="admin-form">
-                <h3>Загрузить новое изображение</h3>
-                <div class="upload-area" id="adminUploadArea">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    <p>Перетащите сюда изображение или нажмите для выбора</p>
-                    <input type="file" id="adminImageUpload" accept="image/*" style="display: none;">
-                </div>
-                <div class="admin-controls">
-                    <button id="clearImages" class="admin-btn danger">Очистить все изображения</button>
-                    <button id="saveAdmin" class="admin-btn">Сохранить изменения</button>
-                </div>
-            </div>
-            <div class="admin-preview">
-                <h3>Предпросмотр загруженных изображений</h3>
-                <div class="preview-grid" id="adminPreviewGrid">
-                    <!-- Сюда будут добавляться превью -->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h2>ZXM Clan</h2>
-                    <p>Boom Hood Roblox Community</p>
-                    <div class="online-counter-footer">
-                        <i class="fas fa-users"></i>
-                        <span>Игроков онлайн: </span>
-                        <span id="onlineCount">7</span>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Главная</a>
-                    <a href="#about">О нас</a>
-                    <a href="#members">Участники</a>
-                    <a href="#humiliated">Кого мы унизили</a>
-                    <a href="#join">Присоединиться</a>
-                </div>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 ZXM Clan. Все права защищены.</p>
-            </div>
-        </footer>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
-
+                        <p class="discord-help">Если вам не отвечают, киньте заявку в дру
