@@ -194,3 +194,170 @@ document.head.appendChild(style);
 document.addEventListener('DOMContentLoaded', function() {
     updateOnlineCounter();
 });
+
+
+// ... предыдущий код JavaScript ...
+
+// Админ панель - управление изображениями
+const adminPanel = document.querySelector('.admin-panel');
+const adminUploadArea = document.getElementById('adminUploadArea');
+const adminImageUpload = document.getElementById('adminImageUpload');
+const adminPreviewGrid = document.getElementById('adminPreviewGrid');
+const humiliatedGrid = document.getElementById('humiliatedGrid');
+const clearImagesBtn = document.getElementById('clearImages');
+const saveAdminBtn = document.getElementById('saveAdmin');
+
+// Показать/скрыть админ панель
+document.querySelectorAll('.admin-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        adminPanel.style.display = adminPanel.style.display === 'block' ? 'none' : 'block';
+        
+        if (adminPanel.style.display === 'block') {
+            loadAdminImages();
+        }
+    });
+});
+
+// Загрузка изображений
+adminUploadArea.addEventListener('click', () => {
+    adminImageUpload.click();
+});
+
+adminImageUpload.addEventListener('change', (e) => {
+    handleAdminUpload(e.target.files);
+});
+
+adminUploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    adminUploadArea.style.background = 'rgba(0, 255, 0, 0.2)';
+});
+
+adminUploadArea.addEventListener('dragleave', () => {
+    adminUploadArea.style.background = '';
+});
+
+adminUploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    adminUploadArea.style.background = '';
+    handleAdminUpload(e.dataTransfer.files);
+});
+
+function handleAdminUpload(files) {
+    for (const file of files) {
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                addImageToPreview(e.target.result, file.name);
+            }
+            
+            reader.readAsDataURL(file);
+        }
+    }
+}
+
+function addImageToPreview(imageData, filename) {
+    const previewItem = document.createElement('div');
+    previewItem.className = 'preview-item';
+    previewItem.innerHTML = `
+        <img src="${imageData}" alt="Preview">
+        <button class="delete-btn" onclick="removePreviewImage(this)">×</button>
+    `;
+    previewItem.dataset.image = imageData;
+    previewItem.dataset.filename = filename;
+    adminPreviewGrid.appendChild(previewItem);
+}
+
+// Удаление изображения из превью
+function removePreviewImage(button) {
+    button.parentElement.remove();
+    updatePlaceholderVisibility();
+}
+
+// Очистка всех изображений
+clearImagesBtn.addEventListener('click', () => {
+    if (confirm('Вы уверены, что хотите удалить все изображения?')) {
+        localStorage.removeItem('zxm_humiliated_images');
+        adminPreviewGrid.innerHTML = '';
+        humiliatedGrid.innerHTML = '';
+        addPlaceholder();
+    }
+});
+
+// Сохранение изменений
+saveAdminBtn.addEventListener('click', () => {
+    saveImages();
+    alert('Изображения успешно сохранены!');
+    adminPanel.style.display = 'none';
+});
+
+function saveImages() {
+    const images = [];
+    document.querySelectorAll('.preview-item').forEach(item => {
+        images.push({
+            data: item.dataset.image,
+            filename: item.dataset.filename
+        });
+    });
+    
+    localStorage.setItem('zxm_humiliated_images', JSON.stringify(images));
+    displayHumiliatedImages();
+}
+
+// Загрузка сохранённых изображений
+function loadAdminImages() {
+    adminPreviewGrid.innerHTML = '';
+    const savedImages = JSON.parse(localStorage.getItem('zxm_humiliated_images') || '[]');
+    
+    savedImages.forEach(image => {
+        addImageToPreview(image.data, image.filename);
+    });
+    
+    updatePlaceholderVisibility();
+}
+
+// Отображение изображений в разделе "Кого мы унизили"
+function displayHumiliatedImages() {
+    const savedImages = JSON.parse(localStorage.getItem('zxm_humiliated_images') || '[]');
+    humiliatedGrid.innerHTML = '';
+    
+    if (savedImages.length === 0) {
+        addPlaceholder();
+        return;
+    }
+    
+    savedImages.forEach(image => {
+        const item = document.createElement('div');
+        item.className = 'humiliated-item';
+        item.innerHTML = `<img src="${image.data}" alt="Униженный противник">`;
+        humiliatedGrid.appendChild(item);
+    });
+}
+
+function addPlaceholder() {
+    humiliatedGrid.innerHTML = `
+        <div class="placeholder">
+            <i class="fas fa-trophy"></i>
+            <p>Здесь будут появляться наши победы!</p>
+        </div>
+    `;
+}
+
+function updatePlaceholderVisibility() {
+    const hasImages = document.querySelectorAll('.preview-item').length > 0;
+    if (!hasImages) {
+        addPlaceholder();
+    }
+}
+
+// Инициализация при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    // ... предыдущая инициализация ...
+    
+    // Загрузка изображений унижений
+    displayHumiliatedImages();
+    
+    // Скрыть админ панель по умолчанию
+    adminPanel.style.display = 'none';
+});
