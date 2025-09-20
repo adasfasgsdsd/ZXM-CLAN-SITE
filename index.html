@@ -29,6 +29,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             perspective: 1000px;
+            height: 100%;
         }
         
         .container {
@@ -38,9 +39,28 @@
             padding: 0 20px;
         }
         
+        /* 3D Canvas */
+        #threeD-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .shape-3d {
+            position: absolute;
+            border-radius: 8px;
+            transition: transform 0.5s ease-out;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
         /* Header Styles */
         header {
-            background: rgba(26, 26, 26, 0.9);
+            background: rgba(26, 26, 26, 0.8);
             backdrop-filter: blur(10px);
             padding: 20px 0;
             position: fixed;
@@ -136,7 +156,6 @@
         .hero {
             padding: 160px 0 100px;
             text-align: center;
-            background: linear-gradient(125deg, var(--primary) 0%, var(--secondary) 70%);
             position: relative;
             overflow: hidden;
         }
@@ -156,7 +175,7 @@
         
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             max-width: 800px;
             margin: 0 auto;
             transform-style: preserve-3d;
@@ -219,8 +238,13 @@
         /* About Section */
         .about {
             padding: 100px 0;
-            background: var(--primary);
+            background: rgba(26, 26, 26, 0.7);
             transform-style: preserve-3d;
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
         }
         
         .section-title {
@@ -294,8 +318,13 @@
         /* Leaders Section */
         .leaders {
             padding: 100px 0;
-            background: var(--secondary);
+            background: rgba(45, 45, 45, 0.7);
             transform-style: preserve-3d;
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
         }
         
         .leaders-grid {
@@ -370,8 +399,13 @@
         /* Application Section */
         .application {
             padding: 100px 0;
-            background: var(--primary);
+            background: rgba(26, 26, 26, 0.7);
             transform-style: preserve-3d;
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
         }
         
         .application-form {
@@ -421,10 +455,13 @@
         
         /* Footer */
         footer {
-            background: var(--secondary);
+            background: rgba(45, 45, 45, 0.7);
             padding: 60px 0 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             transform-style: preserve-3d;
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 2;
         }
         
         .footer-content {
@@ -586,6 +623,9 @@
     </style>
 </head>
 <body>
+    <!-- 3D Canvas -->
+    <div id="threeD-container"></div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -766,6 +806,88 @@
         // Конфигурация Telegram бота
         const TELEGRAM_BOT_TOKEN = '8421922493:AAG-6zXdALUQnq9JlUKyR8W_EK18ippooPQ';
         const TELEGRAM_CHAT_IDS = ['6719958001', '5947748922', '7214965634'];
+
+        // Создание 3D абстракций
+        function create3DScene() {
+            const container = document.getElementById('threeD-container');
+            const shapes = [];
+            
+            // Создаем 15 абстрактных фигур
+            for (let i = 0; i < 15; i++) {
+                const shape = document.createElement('div');
+                shape.className = 'shape-3d';
+                
+                // Случайный размер
+                const size = Math.random() * 100 + 50;
+                shape.style.width = `${size}px`;
+                shape.style.height = `${size}px`;
+                
+                // Случайная позиция
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                shape.style.left = `${x}vw`;
+                shape.style.top = `${y}vh`;
+                
+                // Случайный цвет с градиентом
+                const hue = Math.random() * 360;
+                shape.style.background = `linear-gradient(135deg, 
+                    hsl(${hue}, 70%, 60%), 
+                    hsl(${(hue + 40) % 360}, 70%, 40%))`;
+                
+                // Случайный z-index
+                shape.style.zIndex = Math.floor(Math.random() * 5);
+                
+                // Случайный угол поворота
+                const rotateX = Math.random() * 360;
+                const rotateY = Math.random() * 360;
+                const rotateZ = Math.random() * 360;
+                shape.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+                
+                container.appendChild(shape);
+                shapes.push(shape);
+            }
+            
+            return shapes;
+        }
+        
+        // Анимация 3D фигур при движении мыши
+        function setupMouseInteraction(shapes) {
+            document.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX / window.innerWidth - 0.5;
+                const mouseY = e.clientY / window.innerHeight - 0.5;
+                
+                shapes.forEach((shape, index) => {
+                    // Задержка для создания волнового эффекта
+                    const delay = index * 0.05;
+                    
+                    setTimeout(() => {
+                        const depth = parseInt(shape.style.zIndex) + 1;
+                        const rotateX = mouseY * 20 * depth;
+                        const rotateY = mouseX * 20 * depth;
+                        const translateX = mouseX * 20 * depth;
+                        const translateY = mouseY * 20 * depth;
+                        
+                        shape.style.transform = `
+                            rotateX(${rotateX}deg) 
+                            rotateY(${rotateY}deg)
+                            translateX(${translateX}px)
+                            translateY(${translateY}px)
+                        `;
+                    }, delay * 1000);
+                });
+            });
+            
+            // Возврат фигур в исходное положение, когда мышь покидает окно
+            document.addEventListener('mouseleave', () => {
+                shapes.forEach(shape => {
+                    shape.style.transform = 'rotateX(0) rotateY(0) translateX(0) translateY(0)';
+                });
+            });
+        }
+        
+        // Инициализация 3D сцены
+        const shapes = create3DScene();
+        setupMouseInteraction(shapes);
 
         // Mobile Navigation
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
